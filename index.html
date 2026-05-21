@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ようこそproxywikiへ</title>
+    <title>サイト一覧 - proxywiki</title>
     <style>
         body { 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; 
@@ -37,6 +37,7 @@
             font-size: 1.25rem;
             font-weight: 500;
             color: #3c4043;
+            text-decoration: none;
         }
         .menu-btn {
             background: none;
@@ -125,31 +126,39 @@
             font-size: 1.05rem;
             margin-bottom: 32px;
         }
-        ul { 
+        .site-grid { 
             list-style-type: none; 
             padding: 0; 
-            display: flex;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
             gap: 20px;
-            flex-wrap: wrap;
         }
-        li { 
-            margin-bottom: 12px; 
-            flex: 1;
-            min-width: 200px;
+        .site-item { 
+            margin-bottom: 0;
         }
         .btn-link {
-            display: block;
-            text-align: center;
-            padding: 24px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 32px 16px;
             background-color: #fff;
             color: #1a73e8;
             text-decoration: none;
             border-radius: 8px;
             font-weight: 500;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             border: 1px solid #dadce0;
             box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15);
             transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+            height: 100%;
+            box-sizing: border-box;
+        }
+        .btn-link span {
+            font-size: 0.85rem;
+            color: #5f6368;
+            margin-top: 8px;
+            font-weight: normal;
         }
         .btn-link:hover {
             background-color: #f8f9fa;
@@ -163,28 +172,38 @@
     <input type="checkbox" id="menu-bar">
 
     <header>
-        <span class="logo">proxywiki</span>
+        <a href="home.html" class="logo">proxywiki</a>
         <label for="menu-bar" class="menu-btn">☰</label>
     </header>
 
     <nav class="side-menu">
         <ul>
             <li><a href="#">ホーム</a></li>
-            <li><a href="site/list.html">サイト一覧</a></li>
-            <li><a href="site/help.html">ヘルプ</a></li>
+            <li><a href="#">サイト一覧</a></li>
+            <li><a href="#">ヘルプ</a></li>
         </ul>
     </nav>
 
     <label for="menu-bar" class="overlay"></label>
 
     <div class="container">
-        <h1>ようこそproxywikiへ</h1>
+        <h1>サイト一覧</h1>
         
-        <p>欲しいサイトを選択してね</p>
+        <p>登録されているウェブサイトの一覧です。カードを選択すると移動します。</p>
 
-        <ul>
-            <li><a href="site/wkt.html" class="btn-link">wkt</a></li>
-            <li><a href="site/sennin.html" class="btn-link">仙人tube</a></li>
+        <ul class="site-grid">
+            <li class="site-item">
+                <a href="site/wkt.html" class="btn-link">
+                    wkt
+                    <span>site/wkt.html</span>
+                </a>
+            </li>
+            <li class="site-item">
+                <a href="site/sennin.html" class="btn-link">
+                    仙人tube
+                    <span>site/sennin.html</span>
+                </a>
+            </li>
         </ul>
     </div>
 
