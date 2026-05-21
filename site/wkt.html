@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>わかめtube & わかめtube plus</title>
     <style>
-        /* 極限まで減らした最小限のスタイル（読みやすさのため最低限の余白のみ） */
         body { font-family: sans-serif; margin: 20px; }
         ul { list-style-type: none; padding: 0; }
         li { margin-bottom: 10px; }
@@ -13,47 +12,47 @@
 </head>
 <body>
 
-    <!-- 画面上のタイトル -->
     <h1>わかめtube & わかめtube plus</h1>
 
-    <!-- 固定リンク -->
     <div>
-        <a href="https://example.com/wakame-tube" target="_blank">わかめtube</a>
+        <a href="https://scratch.mit.edu/users/wakame-02/" target="_blank">わかめさん</a>
         | 
-        <a href="https://example.com/wakame-tube-plus" target="_blank">わかめtube plus</a>
+        <a href="https://scratch.mit.edu/users/K_WolFy_/" target="_blank">toka_kun_</a>
     </div>
 
     <hr>
 
-    <!-- 状態表示用（読み込み中 / エラー） -->
     <div id="loading">読み込み中...</div>
     <div id="error" class="hidden" style="color: red;">データの読み込みに失敗しました。</div>
 
-    <!-- URL一覧を表示する場所 -->
     <ul id="url-list"></ul>
 
     <script>
-        // リポジトリ内のパスを指定
         const jsonUrl = '../urls/youtube/wkt.json';
+        const primaryJsonUrl = 'https://raw.githubusercontent.com/xianrentesuchi-bit/A/refs/heads/main/urls/youtube/wkt.json';
 
         const loadingEl = document.getElementById('loading');
         const errorEl = document.getElementById('error');
         const urlListEl = document.getElementById('url-list');
 
-        // JSONファイルの読み込み
-        fetch(jsonUrl)
+        fetch(primaryJsonUrl)
             .then(response => {
                 if (!response.ok) {
-                    throw new Error('ネットワークエラー');
+                    throw new Error('プライマリURLの読み込みエラー');
                 }
                 return response.json();
             })
+            .catch(() => {
+                return fetch(jsonUrl).then(response => {
+                    if (!response.ok) {
+                        throw new Error('ネットワークエラー');
+                    }
+                    return response.json();
+                });
+            })
             .then(data => {
-                // 読み込み中を非表示にする
                 loadingEl.classList.add('hidden');
 
-                // 配列データ、またはオブジェクト内の配列を想定してループ処理
-                // ※jsonの構造が単純な配列、もしくは { "urls": [...] } などの場合に対応
                 const urls = Array.isArray(data) ? data : (data.urls || Object.values(data).flat());
 
                 if (!urls || urls.length === 0) {
@@ -62,9 +61,7 @@
                     return;
                 }
 
-                // 一覧の生成
                 urls.forEach(url => {
-                    // 文字列かオブジェクトかを確認してURLを抽出
                     const targetUrl = typeof url === 'string' ? url : (url.url || url.link);
                     
                     if (targetUrl) {
@@ -72,7 +69,7 @@
                         const a = document.createElement('a');
                         a.href = targetUrl;
                         a.textContent = targetUrl;
-                        a.target = '_blank'; // 新しいタブで開く
+                        a.target = '_blank';
                         
                         li.appendChild(a);
                         urlListEl.appendChild(li);
