@@ -52,6 +52,28 @@
             display: flex; align-items: center; gap: 6px;
         }
 
+        /* --- 右上戻るボタン --- */
+        .home-button {
+            margin-left: 16px;
+            padding: 8px 14px;
+            background: #238636;
+            color: #ffffff;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid #2ea043;
+            transition: background 0.2s ease, transform 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .home-button:hover {
+            background: #2ea043;
+            transform: translateY(-1px);
+        }
+
         /* --- メインボードエリア --- */
         #board-canvas {
             flex-grow: 1;
@@ -248,6 +270,8 @@
         <div class="meta-info" id="meta-info">
             <span>読み込み中...</span>
         </div>
+
+        <a href="/" class="home-button">⬅ ホーム</a>
     </header>
 
     <main id="board-canvas">
@@ -402,7 +426,3 @@
     <script src="//accaii.com/padletviewer/script.js" async></script><noscript><img src="//accaii.com/padletviewer/script?guid=on"></noscript>
 </body>
 </html>
-
-<script defer data-domain="html.cafe" src="https://milkymouse.com/js/script.js"></script>
-
-   
