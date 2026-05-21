@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ようこそproxywikiへ</title>
+    <style>
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; 
+            margin: 0;
+            padding: 80px 20px 40px 20px;
+            color: #333;
+            line-height: 1.6;
+            background-color: #f9fbfd;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            width: 100%;
+            max-width: 900px;
+        }
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            height: 64px;
+            background-color: #fff;
+            box-shadow: 0 1px 3px rgba(60,64,67,0.1), 0 1px 2px rgba(60,64,67,0.06);
+            z-index: 1000;
+        }
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: #3c4043;
+        }
+        .menu-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #5f6368;
+            z-index: 1002;
+            transition: background-color 0.2s;
+        }
+        .menu-btn:hover {
+            background-color: #f1f3f4;
+        }
+        .side-menu {
+            position: fixed;
+            top: 0;
+            left: -280px;
+            width: 280px;
+            height: 100%;
+            background-color: #fff;
+            box-shadow: 0 16px 24px 2px rgba(0,0,0,0.14), 0 6px 30px 5px rgba(0,0,0,0.12), 0 8px 10px -7px rgba(0,0,0,0.2);
+            transition: left 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1001;
+            padding-top: 70px;
+            box-sizing: border-box;
+        }
+        .side-menu ul {
+            display: block;
+            padding: 0 8px;
+        }
+        .side-menu li {
+            margin-bottom: 4px;
+        }
+        .side-menu a {
+            color: #3c4043;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: block;
+            padding: 12px 24px;
+            border-radius: 0 24px 24px 0;
+            transition: background-color 0.2s;
+        }
+        .side-menu a:hover {
+            background-color: #f1f3f4;
+            color: #1a73e8;
+        }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.25s ease, visibility 0.25s ease;
+            z-index: 999;
+        }
+        #menu-bar:checked ~ .side-menu {
+            left: 0;
+        }
+        #menu-bar:checked ~ .overlay {
+            opacity: 1;
+            visibility: visible;
+        }
+        #menu-bar {
+            display: none;
+        }
+        h1 {
+            font-size: 2.2rem;
+            color: #202124;
+            font-weight: 400;
+            margin-top: 0;
+            margin-bottom: 12px;
+            border-bottom: 1px solid #dadce0;
+            padding-bottom: 16px;
+        }
+        p {
+            color: #5f6368;
+            font-size: 1.05rem;
+            margin-bottom: 32px;
+        }
+        ul { 
+            list-style-type: none; 
+            padding: 0; 
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        li { 
+            margin-bottom: 12px; 
+            flex: 1;
+            min-width: 200px;
+        }
+        .btn-link {
+            display: block;
+            text-align: center;
+            padding: 24px 16px;
+            background-color: #fff;
+            color: #1a73e8;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 1.1rem;
+            border: 1px solid #dadce0;
+            box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15);
+            transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+        }
+        .btn-link:hover {
+            background-color: #f8f9fa;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px 3px rgba(60,64,67,0.15), 0 1px 3px 0 rgba(60,64,67,0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <input type="checkbox" id="menu-bar">
+
+    <header>
+        <span class="logo">proxywiki</span>
+        <label for="menu-bar" class="menu-btn">☰</label>
+    </header>
+
+    <nav class="side-menu">
+        <ul>
+            <li><a href="/">ホーム</a></li>
+            <li><a href="site/list.html">サイト一覧</a></li>
+            <li><a href="site/help.html">ヘルプ</a></li>
+            <li><a href="site/ytdlp.html">ytdlp稼働状況</a></li>
+            <li><a href="site/padlet.html">padlet代用ビュアー</a></li>
+            <li><a href="site/game.html">games</a></li>
+            <li><a href="site/proxy.html">Heilos</a></li>
+        </ul>
+    </nav>
+
+    <label for="menu-bar" class="overlay"></label>
+
+    <div class="container">
+        <h1>ようこそproxywikiへ</h1>
+        
+        <p>欲しいサイトを選択してね</p>
+
+        <ul>
+            <li><a href="site/wkt.html" class="btn-link">wkt</a></li>
+            <li><a href="site/sennin.html" class="btn-link">仙人tube</a></li>
+        </ul>
+    </div>
+
+</body>
+</html>
